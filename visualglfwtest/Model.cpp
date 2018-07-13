@@ -45,7 +45,7 @@ Model::Model(const char *filename) : vertexes(),indexes() {
 			iss >> trash >> trash;
 			vec2 uv;
 			for (int i = 0;i < 2;i++) iss >> uv[i];
-			uv_.push_back(uv);
+			uv_.push_back(vec2(uv.x,1-uv.y));
 		}
 		else if (!line.compare(0, 2, "f ")) {
 			vector<ivec3> f;

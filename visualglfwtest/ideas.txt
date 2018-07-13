@@ -1,0 +1,33 @@
+material.h:
+	map key to texture id
+	map key to program id
+	map key to color index
+
+	add texture(key,filename):
+		load image and bind key to gl id
+	add shader(key,vertfile,fragfile):
+		load and compile shader to a porgram id
+		bind key to program id
+	add color(key,vec3 color):
+		add color to color vector 
+		bind key to index of color
+
+	get texture(key):
+	get shader(key):
+	get color(key):
+
+
+input.h:
+        map<key to func> inputs
+
+        func callback(key, action){
+            func f=input.at(key)
+            f(action);
+        }
+        func addinput(key,func)
+
+    ex:
+        input::addinput(KEY_P,[&](int action){
+                        if(action==PRESSED)
+                            dosomething();
+                    })

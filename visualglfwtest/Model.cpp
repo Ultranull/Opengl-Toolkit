@@ -14,11 +14,11 @@
 using namespace std;
 using namespace glm;
 
-Model::Model(const char *filename) : verts(),indexes() {
+Model::Model(const char *filename) : vertexes(),indexes() {
 
 	vector<vec3> verts_;
 	vector<vec3> norms_;
-	vector<vec3> uv_;
+	vector<vec2> uv_;
 	int index = 0;
 
 	ifstream in;
@@ -43,7 +43,7 @@ Model::Model(const char *filename) : verts(),indexes() {
 		}
 		else if (!line.compare(0, 3, "vt ")) {
 			iss >> trash >> trash;
-			vec3 uv;
+			vec2 uv;
 			for (int i = 0;i < 2;i++) iss >> uv[i];
 			uv_.push_back(uv);
 		}
@@ -54,7 +54,7 @@ Model::Model(const char *filename) : verts(),indexes() {
 			while (iss >> vert >> trash >> uv >> trash >> norm) {
 				vert--;uv--;norm--;
 				Vertex t = make_tuple(verts_[vert],uv_[uv],norms_[norm]);
-				verts.push_back(t);
+				vertexes.push_back(t);
 				indexes.push_back(index++);
 			}
 		}
@@ -62,10 +62,37 @@ Model::Model(const char *filename) : verts(),indexes() {
 	cerr << "# v# " << verts_.size()  << " vt# " << uv_.size() << " vn# " << norms_.size() << endl;
 }
 
+Model::~Model() {
+}
+
 void Model::setTexture(string file) {
 	diffusemap_ = Material::getTexture(file);
 }
 
-
-Model::~Model() {
+vector<vec3> Model::getVertexes() {
+	vector<vec3> verts;
+	for (int i = 0;i < vertexes.size();i++) {
+		Vertex v = vertexes[i];
+		verts.push_back(get<0>(v));
+	}
+	return verts;
+}
+vector<vec2> Model::getUVs() {
+	vector<vec2> uvs;
+	for (int i = 0;i < vertexes.size();i++) {
+		Vertex v = vertexes[i];
+		uvs.push_back(get<1>(v));
+	}
+	return uvs;
+}
+vector<vec3> Model::getNormals() {
+	vector<vec3> norms;
+	for (int i = 0;i < vertexes.size();i++) {
+		Vertex v = vertexes[i];
+		norms.push_back(get<2>(v));
+	}
+	return norms;
+}
+vector<int> Model::getIndexes() {
+	return indexes;
 }

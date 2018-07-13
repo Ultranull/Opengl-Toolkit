@@ -7,13 +7,17 @@
 
 class Model {
 private:
-	typedef std::tuple<glm::vec3, glm::vec3, glm::vec2> Vertex;
-	std::vector<Vertex> verts;
+	typedef std::tuple<glm::vec3, glm::vec2, glm::vec3> Vertex;
+	std::vector<Vertex> vertexes;
 	std::vector<int> indexes;
 	GLuint diffusemap_;
 public:
 	Model(const char *filename);
 	~Model();
 	void setTexture(std::string file);
+	std::vector<glm::vec3> getVertexes();
+	std::vector<glm::vec2> getUVs();
+	std::vector<glm::vec3> getNormals();
+	std::vector<int> getIndexes();
 };
 

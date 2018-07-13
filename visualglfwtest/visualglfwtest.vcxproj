@@ -438,6 +438,7 @@
     <Text Include="ideas.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="textures\uvmap.DDS" />
     <Image Include="textures\uvtemplate.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

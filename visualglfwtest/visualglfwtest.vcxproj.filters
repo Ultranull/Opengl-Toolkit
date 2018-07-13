@@ -857,5 +857,6 @@
     <Image Include="textures\uvtemplate.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="textures\uvmap.DDS" />
   </ItemGroup>
 </Project>

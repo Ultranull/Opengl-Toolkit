@@ -154,6 +154,7 @@
     <ClCompile Include="include\glm\detail\glm.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="visualglfwtest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +314,7 @@
     <ClInclude Include="include\SOIL.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="Model.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\glm\detail\func_common.inl" />

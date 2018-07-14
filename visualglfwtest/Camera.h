@@ -21,6 +21,7 @@ public:
 	Camera(glm::vec3 pos, glm::vec3 dir, glm::vec3 u);
 
 	void apply(GLFWwindow *window, float delta);
+	void orbit(GLFWwindow *window, float delta);
 	glm::mat4 MVP();
 };
 

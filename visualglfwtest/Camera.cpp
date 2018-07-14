@@ -20,6 +20,7 @@ void Camera::apply(GLFWwindow *window, float delta) {
 	glfwGetFramebufferSize(window, &width, &height);
 	glfwGetCursorPos(window, &xpos, &ypos);
 	glfwSetCursorPos(window, width / 2, height / 2);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	hangle += mouseSpeed * float(width / 2 - xpos);
 	vangle += mouseSpeed * float(height / 2 - ypos);
@@ -48,6 +49,9 @@ void Camera::apply(GLFWwindow *window, float delta) {
 	}
 	projection = perspective(radians(FOV), 4.f / 3.f, .1f, 100.f);
 	view = lookAt(position, position + direction, up);
+}
+void Camera::orbit(GLFWwindow *window, float delta) {
+
 }
 mat4 Camera::MVP() {
 	return projection * view * mat4(1.f);

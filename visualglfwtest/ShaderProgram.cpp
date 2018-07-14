@@ -86,6 +86,7 @@ ShaderProgram::ShaderProgram(std::string vert, std::string frag) {
 
 
 ShaderProgram::~ShaderProgram() {
+	glDeleteProgram(programID);
 }
 
 void ShaderProgram::addUniformLocation(std::string name) {

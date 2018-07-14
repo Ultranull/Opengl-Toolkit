@@ -10,11 +10,13 @@ private:
 	typedef std::tuple<glm::vec3, glm::vec2, glm::vec3> Vertex;
 	std::vector<Vertex> vertexes;
 	std::vector<int> indexes;
-	GLuint diffusemap_;
+	GLuint texture;
+	GLuint shaderProgram;
 public:
 	Model(const char *filename);
 	~Model();
-	void setTexture(std::string file);
+	void setTexture(std::string name);
+	void setShaderProgram(std::string name);
 	std::vector<glm::vec3> getVertexes();
 	std::vector<glm::vec2> getUVs();
 	std::vector<glm::vec3> getNormals();

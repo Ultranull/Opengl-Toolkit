@@ -65,9 +65,11 @@ Model::Model(const char *filename) : vertexes(),indexes() {
 Model::~Model() {
 }
 
-void Model::setTexture(string file) {
-	diffusemap_ = Material::getTexture(file);
+void Model::setTexture(string name) {
+	texture = Material::getTexture(name);
 }
+
+void Model::setShaderProgram(string name) {}
 
 vector<vec3> Model::getVertexes() {
 	vector<vec3> verts;

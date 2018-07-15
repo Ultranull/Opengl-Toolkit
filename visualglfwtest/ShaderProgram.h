@@ -13,6 +13,7 @@ class ShaderProgram {
 	GLuint programID;
 public:
 	ShaderProgram(std::string vert,std::string frag);
+	ShaderProgram(){}
 	~ShaderProgram();
 
 	void addUniformLocation(std::string name);

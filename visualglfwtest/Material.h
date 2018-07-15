@@ -5,16 +5,23 @@
 #include <stdio.h>
 
 #include "GL/glew.h"
+#include "ShaderProgram.h"
 
 
 namespace Material {
-	typedef std::pair<std::string, GLuint> matpair;
+	typedef std::pair<std::string, GLuint> Texture;
 	static std::map<std::string, GLuint> textures;
+
+	typedef std::pair<std::string, ShaderProgram> Shader;
+	static std::map<std::string, ShaderProgram> shaders;
 
 
 	GLuint addTexture(std::string name, const char *tex);
 	void addTextures(std::string name, const char *tar, int sub_width, int sub_height, int ir, int ic);
 	GLuint getTexture(std::string name);
+
+	ShaderProgram addShader(std::string name, std::string vertfile,std::string fragfile);
+	ShaderProgram getShader(std::string name);
 
 
 	GLuint LoadGLTexture(const char *filename);

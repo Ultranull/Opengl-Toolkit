@@ -11,6 +11,7 @@
 
 #include "Material.h"
 #include "Camera.h"
+#include "ShaderProgram.h"
 
 using namespace std;
 using namespace glm;
@@ -36,6 +37,7 @@ void Model::bindbuffers() {
 	glBufferData(GL_ARRAY_BUFFER, norms.size() * sizeof(vec3), &norms[0], GL_STATIC_DRAW);
 
 }
+
 
 Model::Model(const char *filename) : vertexes(),indexes() {
 
@@ -94,7 +96,15 @@ Model::~Model() {
 	glDeleteTextures(1, &texture);
 }
 
-void Model::render(Camera cam) {
+void Model::render(Camera cam, ShaderProgram prog) {
+
+	if(hasTexture){
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		prog.setUniformi("textSample", 0);
+	}
+	else glColor3f(1, 1, 1);
+
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
@@ -115,10 +125,9 @@ void Model::render(Camera cam) {
 }
 
 void Model::setTexture(string name) {
+	hasTexture = true;
 	texture = Material::getTexture(name);
 }
-
-void Model::setShaderProgram(string name) {}
 
 vector<vec3> Model::getVertexes() {
 	vector<vec3> verts;

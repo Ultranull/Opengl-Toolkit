@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include <gl/glew.h>
 
+#include "Camera.h"
 #include "ShaderProgram.h"
 
 class Model {
@@ -13,7 +14,7 @@ private:
 	std::vector<Vertex> vertexes;
 	std::vector<int> indexes;
 	GLuint texture;
-	ShaderProgram prog;
+	bool hasTexture = false;
 
 	GLuint vertexArrayID;
 	GLuint vertexbuffer;
@@ -25,10 +26,9 @@ public:
 	Model(const char *filename);
 	~Model();
 
-	void render(Camera cam);
+	void render(Camera cam,ShaderProgram prog);
 
 	void setTexture(std::string name);
-	void setShaderProgram(std::string name);
 	std::vector<glm::vec3> getVertexes();
 	std::vector<glm::vec2> getUVs();
 	std::vector<glm::vec3> getNormals();

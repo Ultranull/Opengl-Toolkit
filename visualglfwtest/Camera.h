@@ -15,13 +15,18 @@ class Camera {
 	float mouseSpeed = 0.005f;
 	double xpos, ypos;
 	float hangle = 0, vangle = 0;
+	float orbitDist = 3;
 
 public:
 	Camera();
 	Camera(glm::vec3 pos, glm::vec3 dir, glm::vec3 u);
 
 	void apply(GLFWwindow *window, float delta);
-	void orbit(GLFWwindow *window, float delta);
+	void orbit(GLFWwindow *window, float delta,glm::vec3 target);
 	glm::mat4 MVP();
+	glm::mat4 V();
+
+	glm::vec3 getDirection();
+	glm::vec3 getPosition();
 };
 

@@ -47,10 +47,12 @@ void Camera::apply(GLFWwindow *window, float delta) {
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
 		position -= right * delta * speed;
 	}
-	projection = perspective(radians(FOV), 4.f / 3.f, .1f, 100.f);
+
+	float ratio = width / (float)height;
+	projection = perspective(radians(FOV), ratio, .1f, 100.f);
 	view = lookAt(position, position + direction, up);
 }
-void Camera::orbit(GLFWwindow *window, float delta) {
+void Camera::orbit(GLFWwindow *window, float delta,vec3 target) {
 	int width, height;
 	glfwGetFramebufferSize(window, &width, &height);
 	glfwGetCursorPos(window, &xpos, &ypos);
@@ -59,38 +61,48 @@ void Camera::orbit(GLFWwindow *window, float delta) {
 
 
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-		position -= vec3(0,0,1) * delta * speed;
+		orbitDist -=  delta * speed;
 	}
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-		position += vec3(0, 0, 1) * delta * speed;
+		orbitDist +=  delta * speed;
 	}
 
 	hangle += mouseSpeed * float(width / 2 - xpos);
 	vangle += mouseSpeed * float(height / 2 - ypos);
-	float dist = position.z;
-	direction = vec3(cos(vangle)*sin(hangle)*dist,
-		sin(vangle)*dist,
-		cos(vangle)*cos(hangle)*dist);
 
 	float pi = radians(180.f);
 
-	direction = vec3(cos(vangle)*sin(hangle),
+	position = vec3(cos(vangle)*sin(hangle),
 					 sin(vangle),
-					 cos(vangle)*cos(hangle))*dist;
+					 cos(vangle)*cos(hangle))*orbitDist;
+	direction = position / orbitDist;
 	vec3 right(sin(hangle - pi / 2.f),
 			   0,
 			   cos(hangle - pi / 2.f));
 	up = cross(right, direction);
 
-	projection = glm::perspective(radians(FOV), 4.0f / 3.0f, 0.1f, 100.0f);
+	float ratio = width / (float)height;
+	projection = glm::perspective(radians(FOV), ratio, 0.1f, 100.0f);
 	view = glm::lookAt(
-		direction, 
-		vec3(0, 0, 0), 
+		position, 
+		target,
 		up  
 	);
 
 
 }
 mat4 Camera::MVP() {
-	return projection * view * mat4(1.f);
+	return projection * view;
+}
+
+mat4 Camera::V() {
+	return view;
+}
+
+vec3 Camera::getDirection() {
+	return direction;
+}
+
+vec3 Camera::getPosition() {
+	return position;
 }

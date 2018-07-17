@@ -1,4 +1,4 @@
-#include "Model.h"
+#include "Mesh.h"
 
 #include <glm/glm.hpp>
 #include <gl/glew.h>
@@ -16,7 +16,7 @@
 using namespace std;
 using namespace glm;
 
-void Model::bindbuffers() {
+void Mesh::bindbuffers() {
 	vector<vec3> verts =getVertexes();
 	vector<vec2> uvs = getUVs();
 	vector<vec3> norms = getNormals();
@@ -39,7 +39,7 @@ void Model::bindbuffers() {
 }
 
 
-Model::Model(const char *filename) : vertexes(),indexes() {
+Mesh::Mesh(const char *filename) : vertexes(),indexes() {
 
 	vector<vec3> verts_;
 	vector<vec3> norms_;
@@ -88,7 +88,7 @@ Model::Model(const char *filename) : vertexes(),indexes() {
 	bindbuffers();
 }
 
-Model::~Model() {
+Mesh::~Mesh() {
 	glDeleteBuffers(1, &vertexbuffer);
 	glDeleteBuffers(1, &uvbuffer);
 	glDeleteBuffers(1, &normalbuffer);
@@ -96,7 +96,7 @@ Model::~Model() {
 	glDeleteTextures(1, &texture);
 }
 
-void Model::render(Camera cam, ShaderProgram prog) {
+void Mesh::render(Camera cam, ShaderProgram prog) {
 
 	if(hasTexture){
 		glActiveTexture(GL_TEXTURE0);
@@ -124,12 +124,12 @@ void Model::render(Camera cam, ShaderProgram prog) {
 	glDisableVertexAttribArray(2);
 }
 
-void Model::setTexture(string name) {
+void Mesh::setTexture(string name) {
 	hasTexture = true;
 	texture = Material::getTexture(name);
 }
 
-vector<vec3> Model::getVertexes() {
+vector<vec3> Mesh::getVertexes() {
 	vector<vec3> verts;
 	for (int i = 0;i < vertexes.size();i++) {
 		Vertex v = vertexes[i];
@@ -137,7 +137,7 @@ vector<vec3> Model::getVertexes() {
 	}
 	return verts;
 }
-vector<vec2> Model::getUVs() {
+vector<vec2> Mesh::getUVs() {
 	vector<vec2> uvs;
 	for (int i = 0;i < vertexes.size();i++) {
 		Vertex v = vertexes[i];
@@ -145,7 +145,7 @@ vector<vec2> Model::getUVs() {
 	}
 	return uvs;
 }
-vector<vec3> Model::getNormals() {
+vector<vec3> Mesh::getNormals() {
 	vector<vec3> norms;
 	for (int i = 0;i < vertexes.size();i++) {
 		Vertex v = vertexes[i];
@@ -153,6 +153,6 @@ vector<vec3> Model::getNormals() {
 	}
 	return norms;
 }
-vector<int> Model::getIndexes() {
+vector<int> Mesh::getIndexes() {
 	return indexes;
 }

@@ -8,7 +8,7 @@
 #include "Camera.h"
 #include "ShaderProgram.h"
 
-class Model {
+class Mesh {
 private:
 	typedef std::tuple<glm::vec3, glm::vec2, glm::vec3> Vertex;
 	std::vector<Vertex> vertexes;
@@ -23,8 +23,8 @@ private:
 
 	void bindbuffers();
 public:
-	Model(const char *filename);
-	~Model();
+	Mesh(const char *filename);
+	~Mesh();
 
 	void render(Camera cam,ShaderProgram prog);
 

@@ -861,6 +861,8 @@
     </None>
     <None Include="shaders\modelL.frag" />
     <None Include="shaders\modelL.vert" />
+    <None Include="shaders\simple.frag" />
+    <None Include="shaders\simple.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ideas.txt" />

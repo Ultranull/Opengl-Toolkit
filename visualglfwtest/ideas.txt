@@ -29,9 +29,6 @@ input.h:
 
 
 todo:
-
-organize inputs so that they are reconfigureable.
-
-push more input options through input namespace
-
-two mesh objects can share ids (kinda obvious idea but doesnt hurt to write it down)
+-organize inputs so that they are reconfigureable.
+-push more input options through input namespace
+-two mesh objects can share ids (kinda obvious idea but doesnt hurt to write it down)

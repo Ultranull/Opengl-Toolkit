@@ -1,36 +1,55 @@
 #version 330 core
+out vec4 FragColor;
 
-in vec2 UV;
-in vec3 posWS;
-in vec3 normCS;
-in vec3 eyeCS;
-in vec3 lightDirCS;
+struct Material {
+    vec3 ambient;
+    sampler2D diffuse;
+    vec3 specular;    
+    float shininess;
+}; 
 
-out vec3 color;
+struct Light {
+    vec3 position;
 
-uniform sampler2D textSample;
-uniform vec3 lightPos;
-uniform float time;
+    vec3 ambient;
+    vec3 diffuse;
+	float power;
+    vec3 specular;
+};
 
+in vec3 FragPos;  
+in vec3 Normal;  
+in vec2 TexCoords;
+  
+uniform vec3 viewPos;
+uniform Material material;
+uniform Light lights[2];
+
+vec3 calcLight(Light light);
 
 void main(){
-	vec3 LightColor = vec3(1,1,1);
-	float LightPower = 20.0f;
-	
-	vec3 MaterialDiffuseColor = texture( textSample, UV ).rgb;
-	vec3 MaterialAmbientColor = vec3(0.0) * MaterialDiffuseColor;
-	vec3 MaterialSpecularColor = vec3(0.3);
+	vec3 result=vec3(0);
+	for(int i=0;i<2;i++)
+		result+=calcLight(lights[i]);
+    FragColor = vec4(result, 1.0);
+} 
+vec3 calcLight(Light light){
+	float dist=length(light.position-FragPos);
 
-	float distance = length( lightPos - posWS );
-	vec3 n = normalize( normCS );
-	vec3 l = normalize( lightDirCS );
-	float cosTheta = clamp( dot( n,l ), 0,1 );
-	vec3 E = normalize(eyeCS);
-	vec3 R = reflect(-l,n);
-	float cosAlpha = clamp( dot( E,R ), 0,1 );
-	
-	color = 
-		MaterialAmbientColor +
-		MaterialDiffuseColor * LightColor * LightPower * cosTheta / (distance*distance) +
-MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) / (distance*distance);
+    // ambient
+    vec3 ambient = light.ambient * material.ambient;
+  	
+    // diffuse 
+    vec3 norm = normalize(Normal);
+    vec3 lightDir = normalize(light.position - FragPos);
+    float diff = max(dot(norm, lightDir), 0.0);
+    vec3 diffuse = light.diffuse * (diff * texture(material.diffuse,TexCoords).rgb) * light.power;
+    
+    // specular
+    vec3 viewDir = normalize(viewPos - FragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);  
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    vec3 specular = light.specular * (spec * material.specular);  
+        
+    return ambient + (diffuse + specular)/(dist*dist);
 }

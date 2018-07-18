@@ -101,7 +101,7 @@ void Mesh::render(Camera cam, ShaderProgram prog) {
 	if(hasTexture){
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture);
-		prog.setUniformi("textSample", 0);
+		prog.setUniformi("material.diffuse", 0);
 	}
 
 	glEnableVertexAttribArray(0);

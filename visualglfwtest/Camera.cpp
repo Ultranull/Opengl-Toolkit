@@ -6,6 +6,12 @@
 
 using namespace glm;
 
+const GLuint FORWARD = GLFW_KEY_W;
+const GLuint BACKWARD = GLFW_KEY_S;
+const GLuint STRAFERIGHT = GLFW_KEY_D;
+const GLuint STRAFELEFT = GLFW_KEY_A;
+
+
 Camera::Camera() {
 	position = vec3(0, 0, 0);
 	direction = vec3(0, 0, 0);
@@ -35,16 +41,16 @@ void Camera::apply(GLFWwindow *window, float delta) {
 		cos(hangle - pi / 2.f));
 	up = cross(right, direction);
 
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+	if (glfwGetKey(window, FORWARD) == GLFW_PRESS) {
 		position += direction * delta * speed;
 	}
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+	if (glfwGetKey(window, BACKWARD) == GLFW_PRESS) {
 		position -= direction * delta * speed;
 	}
-	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+	if (glfwGetKey(window, STRAFERIGHT) == GLFW_PRESS) {
 		position += right * delta * speed;
 	}
-	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+	if (glfwGetKey(window, STRAFELEFT) == GLFW_PRESS) {
 		position -= right * delta * speed;
 	}
 
@@ -60,10 +66,10 @@ void Camera::orbit(GLFWwindow *window, float delta,vec3 target) {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+	if (glfwGetKey(window, FORWARD) == GLFW_PRESS) {
 		orbitDist -=  delta * speed;
 	}
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+	if (glfwGetKey(window, BACKWARD) == GLFW_PRESS) {
 		orbitDist +=  delta * speed;
 	}
 
@@ -74,8 +80,8 @@ void Camera::orbit(GLFWwindow *window, float delta,vec3 target) {
 
 	position = vec3(cos(vangle)*sin(hangle),
 					 sin(vangle),
-					 cos(vangle)*cos(hangle))*orbitDist;
-	direction = position / orbitDist;
+					 cos(vangle)*cos(hangle))*orbitDist + target;
+	direction = (position - target)/ orbitDist;
 	vec3 right(sin(hangle - pi / 2.f),
 			   0,
 			   cos(hangle - pi / 2.f));
@@ -91,8 +97,8 @@ void Camera::orbit(GLFWwindow *window, float delta,vec3 target) {
 
 
 }
-mat4 Camera::MVP() {
-	return projection * view;
+mat4 Camera::P() {
+	return projection;
 }
 
 mat4 Camera::V() {

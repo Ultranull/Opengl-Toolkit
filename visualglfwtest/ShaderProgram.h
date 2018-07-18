@@ -11,6 +11,7 @@ class ShaderProgram {
 	GLuint vertexShader;
 	GLuint fragmentShader;
 	GLuint programID;
+
 public:
 	ShaderProgram(std::string vert,std::string frag);
 	ShaderProgram(){}

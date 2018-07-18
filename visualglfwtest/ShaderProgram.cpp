@@ -91,25 +91,30 @@ ShaderProgram::~ShaderProgram() {
 
 void ShaderProgram::addUniformLocation(std::string name) {
 	GLuint id = glGetUniformLocation(programID, name.c_str());
+	printf("%s %d\n",name.c_str(),id);
 	uniformIDs.insert(uniform(name, id));
 }
 
 void ShaderProgram::setUniformVec3(std::string name, glm::vec3 v) {
+	if (uniformIDs.find(name) == uniformIDs.end()) { return; }
 	GLuint id = uniformIDs[name];
 	glUniform3f(id, v.x, v.y, v.z);
 }
 
 void ShaderProgram::setUniformMat4(std::string name, glm::mat4 m) {
+	if (uniformIDs.find(name) == uniformIDs.end()) { return; }
 	GLuint id = uniformIDs[name];
 	glUniformMatrix4fv(id, 1, GL_FALSE, &m[0][0]);
 }
 
 void ShaderProgram::setUniformf(std::string name, float f) {
+	if (uniformIDs.find(name) == uniformIDs.end()) { return; }
 	GLuint id = uniformIDs[name];
 	glUniform1f(id, f);
 }
 
 void ShaderProgram::setUniformi(std::string name, int i) {
+	if (uniformIDs.find(name) == uniformIDs.end()) { return; }
 	GLuint id = uniformIDs[name];
 	glUniform1i(id, i);
 }

@@ -10,15 +10,16 @@ out vec3 color;
 
 uniform sampler2D textSample;
 uniform vec3 lightPos;
+uniform float time;
 
 
 void main(){
 	vec3 LightColor = vec3(1,1,1);
-	float LightPower = 20.0f;
+	float LightPower = 50.0f;
 	
 	vec3 MaterialDiffuseColor = texture( textSample, UV ).rgb;
-	vec3 MaterialAmbientColor = vec3(0,0,0) * MaterialDiffuseColor;
-	vec3 MaterialSpecularColor = vec3(0.3,0.3,0.3);
+	vec3 MaterialAmbientColor = vec3(0.08) * MaterialDiffuseColor;
+	vec3 MaterialSpecularColor = vec3(0.3);
 
 	float distance = length( lightPos - posWS );
 	vec3 n = normalize( normCS );
@@ -31,5 +32,5 @@ void main(){
 	color = 
 		MaterialAmbientColor +
 		MaterialDiffuseColor * LightColor * LightPower * cosTheta / (distance*distance) +
-MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,25) / (distance*distance);
+MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) / (distance*distance);
 }

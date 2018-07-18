@@ -23,7 +23,7 @@ public:
 
 	void apply(GLFWwindow *window, float delta);
 	void orbit(GLFWwindow *window, float delta,glm::vec3 target);
-	glm::mat4 MVP();
+	glm::mat4 P();
 	glm::mat4 V();
 
 	glm::vec3 getDirection();

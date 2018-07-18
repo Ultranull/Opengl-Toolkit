@@ -103,7 +103,6 @@ void Mesh::render(Camera cam, ShaderProgram prog) {
 		glBindTexture(GL_TEXTURE_2D, texture);
 		prog.setUniformi("textSample", 0);
 	}
-	else glColor3f(1, 1, 1);
 
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);

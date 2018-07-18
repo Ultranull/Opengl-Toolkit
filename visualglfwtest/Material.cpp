@@ -9,7 +9,7 @@ namespace Material {
 
 	GLuint addTexture(string name, const char *tex) {
 		GLuint id = LoadGLTexture(tex);
-		printf("setting material: %s\n", name.c_str());
+		printf("setting texture: %s\n", name.c_str());
 		textures.insert(Texture(name, id));
 		return id;
 	}
@@ -21,7 +21,7 @@ namespace Material {
 				stringstream n;
 				n << name << (ind++);
 				int id = LoadGLsubTexture(tar, c*sub_width, i*sub_height, sub_width, sub_height);
-				printf("setting material: %s\n", n.str());
+				printf("setting texture: %s\n", n.str());
 				textures.insert(Texture(n.str(), id));
 			}
 
@@ -32,7 +32,7 @@ namespace Material {
 
 	ShaderProgram addShader(string name, string vertfile, string fragfile) {
 		ShaderProgram prog(vertfile.c_str(), fragfile.c_str());
-		printf("setting shader %s\n",name);
+		printf("setting shader %s\n",name.c_str());
 		shaders.insert(Shader(name, prog));
 		return prog;
 	}
@@ -60,6 +60,7 @@ namespace Material {
 		);
 		if (texture == 0) {
 			printf("error loading texture %s!\n", filename);
+			getchar();
 			exit(-1);
 		}
 
@@ -97,6 +98,7 @@ namespace Material {
 		);
 		if (texture == 0) {
 			printf("error loading texture %s!\n", filename);
+			getchar();
 			exit(-1);
 		}
 

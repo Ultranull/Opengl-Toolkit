@@ -15,10 +15,10 @@ uniform float time;
 
 void main(){
 	vec3 LightColor = vec3(1,1,1);
-	float LightPower = 50.0f;
+	float LightPower = 20.0f;
 	
 	vec3 MaterialDiffuseColor = texture( textSample, UV ).rgb;
-	vec3 MaterialAmbientColor = vec3(0.08) * MaterialDiffuseColor;
+	vec3 MaterialAmbientColor = vec3(0.0) * MaterialDiffuseColor;
 	vec3 MaterialSpecularColor = vec3(0.3);
 
 	float distance = length( lightPos - posWS );

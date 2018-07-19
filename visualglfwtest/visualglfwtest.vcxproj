@@ -155,8 +155,9 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="include\glm\detail\glm.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="visualglfwtest.cpp" />
   </ItemGroup>
@@ -317,8 +318,9 @@
     <ClInclude Include="include\GL\wglew.h" />
     <ClInclude Include="include\SOIL.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Material.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="ShaderProgram.h" />
   </ItemGroup>
   <ItemGroup>

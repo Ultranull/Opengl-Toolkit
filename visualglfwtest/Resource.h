@@ -8,7 +8,7 @@
 #include "ShaderProgram.h"
 
 
-namespace Material {
+namespace Resource {
 	typedef std::pair<std::string, GLuint> Texture;
 	static std::map<std::string, GLuint> textures;
 

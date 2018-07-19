@@ -1,11 +1,11 @@
-#include "Material.h"
+#include "Resource.h"
 
 #include <sstream>
 #include <SOIL.h>
 
 using namespace std;
 
-namespace Material {
+namespace Resource {
 
 	GLuint addTexture(string name, const char *tex) {
 		GLuint id = LoadGLTexture(tex);

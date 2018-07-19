@@ -125,7 +125,7 @@ void Mesh::render(Camera cam, ShaderProgram prog) {
 
 void Mesh::setTexture(string name) {
 	hasTexture = true;
-	texture = Material::getTexture(name);
+	texture = Resource::getTexture(name);
 }
 
 vector<vec3> Mesh::getVertexes() {

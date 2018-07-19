@@ -32,7 +32,7 @@ in vec3 FragPos;
 in vec3 Normal;  
 in vec2 TexCoords;
 
-#define numLights 3
+#define numLights 10
 
 uniform vec3 viewPos;
 uniform Material material;

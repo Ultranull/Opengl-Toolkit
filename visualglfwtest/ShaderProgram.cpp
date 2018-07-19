@@ -117,10 +117,6 @@ void ShaderProgram::bind() {
 	glUseProgram(programID);
 }
 
-void ShaderProgram::unbind() {
-	glUseProgram(0);
-}
-
 GLuint ShaderProgram::getProgramID() {
 	return programID;
 }

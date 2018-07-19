@@ -21,7 +21,7 @@ namespace Resource {
 				stringstream n;
 				n << name << (ind++);
 				int id = LoadGLsubTexture(tar, c*sub_width, i*sub_height, sub_width, sub_height);
-				printf("setting texture: %s\n", n.str());
+				printf("setting texture: %s\n", n.str().c_str());
 				textures.insert(Texture(n.str(), id));
 			}
 

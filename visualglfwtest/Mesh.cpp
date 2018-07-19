@@ -9,7 +9,7 @@
 #include <sstream>
 #include <vector>
 
-#include "Material.h"
+#include "Resource.h"
 #include "Camera.h"
 #include "ShaderProgram.h"
 
@@ -121,6 +121,10 @@ void Mesh::render(Camera cam, ShaderProgram prog) {
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
+}
+
+tuple<GLuint, GLuint, GLuint, int> Mesh::getbuffers() {
+	return make_tuple(vertexbuffer,normalbuffer,uvbuffer,indexes.size());
 }
 
 void Mesh::setTexture(string name) {

@@ -28,6 +28,8 @@ public:
 
 	void render(Camera cam,ShaderProgram prog);
 
+	std::tuple<GLuint, GLuint, GLuint,int> getbuffers();
+
 	void setTexture(std::string name);
 	std::vector<glm::vec3> getVertexes();
 	std::vector<glm::vec2> getUVs();

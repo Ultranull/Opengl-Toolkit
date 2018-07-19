@@ -22,7 +22,6 @@ public:
 
 
 	void bind();
-	void unbind();
 
 	GLuint getProgramID();
 };

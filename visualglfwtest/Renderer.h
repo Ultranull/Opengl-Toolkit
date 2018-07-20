@@ -23,6 +23,7 @@ struct PointLight {
 	glm::vec3 ambient;
 	glm::vec3 diffuse;
 	glm::vec3 specular;
+	PointLight() {}
 	PointLight(glm::vec3 pos,float lin,float qd, glm::vec3 am, glm::vec3 df, glm::vec3 sp) :
 		        position(pos), linear(lin), quadratic(qd), ambient(am), diffuse(df), specular(sp){}
 };
@@ -44,13 +45,14 @@ class Renderer {
 
 public:
 	static void addLight(std::string name,PointLight light);
+	static void editLight(std::string name,PointLight light);
 	static void editDirLight(DirLight light);
 
 
 	static void useShader(ShaderProgram program,bool light);
 	static void useTexture(GLuint texture);
 	static void useMaterial(Material mat);
-	static void renderMesh(GLuint method,Mesh mesh,glm::mat4 M, glm::mat4 V, glm::mat4 P);
+	static void renderMesh(GLuint method,Mesh *mesh,glm::mat4 M, glm::mat4 V, glm::mat4 P,glm::vec3 viewpos);
 
 };
 

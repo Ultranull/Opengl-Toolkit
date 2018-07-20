@@ -1,12 +1,16 @@
 #version 330 core
-
-
 out vec3 fragcolor;
+struct Material {
+    vec3 ambient;
+    sampler2D diffuse;
+    vec3 specular;    
+    float shininess;
+};
 
-uniform vec3 color = vec3(1);
+uniform Material material;
 
 
 void main(){
 	
-	fragcolor = color;
+	fragcolor = material.ambient;
 }

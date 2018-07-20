@@ -124,7 +124,7 @@ void Mesh::render(Camera cam, ShaderProgram prog) {
 }
 
 tuple<GLuint, GLuint, GLuint, int> Mesh::getbuffers() {
-	return make_tuple(vertexbuffer,normalbuffer,uvbuffer,indexes.size());
+	return make_tuple(vertexbuffer,uvbuffer, normalbuffer,indexes.size());
 }
 
 void Mesh::setTexture(string name) {

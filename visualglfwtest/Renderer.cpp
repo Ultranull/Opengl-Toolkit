@@ -12,6 +12,9 @@ using namespace glm;
 	void Renderer::addLight(string name, PointLight light) {
 		lights.insert(Light(name, light));
 	}
+	void Renderer::editLight(std::string name, PointLight light) {
+		lights[name] = light;
+	}
 	void Renderer::editDirLight(DirLight light) {
 		dirlight = light;
 	}
@@ -52,13 +55,14 @@ using namespace glm;
 		current.setUniformVec3("material.specular", mat.specular);
 		current.setUniformf("material.shininess", mat.shininess);
 	}
-	void Renderer::renderMesh(GLuint method,Mesh mesh, mat4 M, mat4 V, mat4 P) {
+	void Renderer::renderMesh(GLuint method,Mesh *mesh, mat4 M, mat4 V, mat4 P,vec3 viewpos) {
 
+		current.setUniformVec3("viewPos", viewpos);
 		current.setUniformMat4("model", M);
 		current.setUniformMat4("view", V);
 		current.setUniformMat4("projection", P);
 
-		auto buffers = mesh.getbuffers();
+		auto buffers = mesh->getbuffers();
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, get<0>(buffers));
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);

@@ -260,3 +260,5 @@ __pycache__/
 *.pyc
 /visualglfwtest/models/head_nm.png
 /visualglfwtest/models/head_diffuse.png
+visualglfwtest/models/head.obj
+visualglfwtest/models/lowpolybear13.obj

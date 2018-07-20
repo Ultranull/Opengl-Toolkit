@@ -8,6 +8,7 @@
 
 #include "Mesh.h"
 #include "ShaderProgram.h"
+#include "Camera.h"
 
 struct Material {
 	glm::vec3 ambient;
@@ -48,11 +49,11 @@ public:
 	static void editLight(std::string name,PointLight light);
 	static void editDirLight(DirLight light);
 
-
+	static void setCamera(Camera cam);
 	static void useShader(ShaderProgram program,bool light);
 	static void useTexture(GLuint texture);
 	static void useMaterial(Material mat);
-	static void renderMesh(GLuint method,Mesh *mesh,glm::mat4 M, glm::mat4 V, glm::mat4 P,glm::vec3 viewpos);
+	static void renderMesh(GLuint method,Mesh mesh,glm::mat4 M);
 
 };
 

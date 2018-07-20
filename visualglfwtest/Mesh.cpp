@@ -9,9 +9,6 @@
 #include <sstream>
 #include <vector>
 
-#include "Resource.h"
-#include "Camera.h"
-#include "ShaderProgram.h"
 
 using namespace std;
 using namespace glm;
@@ -88,48 +85,16 @@ Mesh::Mesh(const char *filename) : vertexes(),indexes() {
 	bindbuffers();
 }
 
+Mesh::Mesh():vertexes(),indexes() {
+}
+
 Mesh::~Mesh() {
-	glDeleteBuffers(1, &vertexbuffer);
-	glDeleteBuffers(1, &uvbuffer);
-	glDeleteBuffers(1, &normalbuffer);
-	glDeleteVertexArrays(1, &vertexArrayID);
-	glDeleteTextures(1, &texture);
 }
 
-void Mesh::render(Camera cam, ShaderProgram prog) {
 
-	if(hasTexture){
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		prog.setUniformi("material.diffuse", 0);
-	}
-
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
-	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
-	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
-	glDrawArrays(GL_TRIANGLES, 0, indexes.size() * 3);
-
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
-}
 
 tuple<GLuint, GLuint, GLuint, int> Mesh::getbuffers() {
 	return make_tuple(vertexbuffer,uvbuffer, normalbuffer,indexes.size());
-}
-
-void Mesh::setTexture(string name) {
-	hasTexture = true;
-	texture = Resource::getTexture(name);
 }
 
 vector<vec3> Mesh::getVertexes() {
@@ -158,4 +123,11 @@ vector<vec3> Mesh::getNormals() {
 }
 vector<int> Mesh::getIndexes() {
 	return indexes;
+}
+
+void Mesh::cleanup() {
+	glDeleteBuffers(1, &vertexbuffer);
+	glDeleteBuffers(1, &uvbuffer);
+	glDeleteBuffers(1, &normalbuffer);
+	glDeleteVertexArrays(1, &vertexArrayID);
 }

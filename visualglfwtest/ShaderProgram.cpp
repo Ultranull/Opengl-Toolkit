@@ -86,7 +86,10 @@ ShaderProgram::ShaderProgram(std::string vert, std::string frag) {
 
 
 ShaderProgram::~ShaderProgram() {
-	//glDeleteProgram(programID);
+}
+
+void ShaderProgram::cleanup() {
+	glDeleteProgram(programID);
 }
 
 void ShaderProgram::setUniformVec3(std::string name, glm::vec3 v) {

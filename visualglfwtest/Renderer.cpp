@@ -20,6 +20,12 @@ using namespace glm;
 	}
 
 
+	void Renderer::setCamera(Camera cam) {
+		current.setUniformVec3("viewPos", cam.getPosition());
+		current.setUniformMat4("view", cam.V());
+		current.setUniformMat4("projection", cam.P());
+	}
+
 	void Renderer::useShader(ShaderProgram program,bool light) {
 		glUseProgram(0);
 		current = program;
@@ -55,14 +61,11 @@ using namespace glm;
 		current.setUniformVec3("material.specular", mat.specular);
 		current.setUniformf("material.shininess", mat.shininess);
 	}
-	void Renderer::renderMesh(GLuint method,Mesh *mesh, mat4 M, mat4 V, mat4 P,vec3 viewpos) {
+	void Renderer::renderMesh(GLuint method,Mesh mesh, mat4 M) {
 
-		current.setUniformVec3("viewPos", viewpos);
 		current.setUniformMat4("model", M);
-		current.setUniformMat4("view", V);
-		current.setUniformMat4("projection", P);
 
-		auto buffers = mesh->getbuffers();
+		auto buffers = mesh.getbuffers();
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, get<0>(buffers));
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);

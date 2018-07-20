@@ -43,6 +43,17 @@ namespace Resource {
 
 
 
+	Mesh addMesh(std::string name, std::string file) {
+		Mesh mes(file.c_str());
+		printf("setting mesh %s\n", name.c_str());
+		meshs.insert(MeshP(name,mes));
+		return mes;
+	}
+
+	Mesh getMesh(std::string name) {
+		return meshs[name];
+	}
+
 	GLuint LoadGLTexture(const char *filename) {
 		printf("loading texture: %s\n", filename);
 		glEnable(GL_TEXTURE_2D);
@@ -119,6 +130,24 @@ namespace Resource {
 		SOIL_free_image_data(data);  // free buffer
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return texture;
+	}
+
+	void cleanup() {
+		map<string,Mesh>::iterator         meshit = meshs.begin();
+		map<string,GLuint>::iterator        textit = textures.begin();
+		map<string,ShaderProgram>::iterator shadit = shaders.begin();
+		for (;meshit != meshs.end();meshit++) {
+			Mesh mesh = meshit->second;
+			mesh.cleanup();
+		}
+		for (;textit != textures.end();textit++) {
+			GLuint texture = textit->second;
+			glDeleteTextures(1, &texture);
+		}
+		for (;shadit != shaders.end();shadit++) {
+			ShaderProgram shader = shadit->second;
+			shader.cleanup();
+		}
 	}
 
 }

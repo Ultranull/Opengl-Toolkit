@@ -15,6 +15,8 @@ public:
 	ShaderProgram(){}
 	~ShaderProgram();
 
+	void cleanup();
+
 	void setUniformVec3(std::string name, glm::vec3 v);
 	void setUniformMat4(std::string name, glm::mat4 m);
 	void setUniformf(std::string name, float f);

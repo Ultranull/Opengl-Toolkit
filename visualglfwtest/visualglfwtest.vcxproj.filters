@@ -881,4 +881,9 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Object Include="models\suzanne.obj" />
+    <Object Include="models\sphere.obj" />
+    <Object Include="models\plane.obj" />
+  </ItemGroup>
 </Project>

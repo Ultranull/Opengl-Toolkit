@@ -7,7 +7,8 @@ using namespace glm;
 
  std::map<std::string, PointLight> Renderer::lights;
  DirLight Renderer::dirlight;
- ShaderProgram Renderer::current;
+ ShaderProgram Renderer::currentSP;
+ Camera Renderer::currentC;
 
 	void Renderer::addLight(string name, PointLight light) {
 		lights.insert(Light(name, light));
@@ -21,49 +22,60 @@ using namespace glm;
 
 
 	void Renderer::setCamera(Camera cam) {
-		current.setUniformVec3("viewPos", cam.getPosition());
-		current.setUniformMat4("view", cam.V());
-		current.setUniformMat4("projection", cam.P());
+		currentC = cam;
 	}
 
-	void Renderer::useShader(ShaderProgram program,bool light) {
+	void Renderer::useShader(ShaderProgram program,Option op) {
 		glUseProgram(0);
-		current = program;
-		current.bind();
+		currentSP = program;
+		currentSP.bind();
 
-		if (light) {
+		currentSP.setUniformVec3("viewPos", currentC.getPosition());
+		currentSP.setUniformMat4("view", currentC.V());
+		currentSP.setUniformMat4("projection", currentC.P());
+
+		if (op==LIGHTING_RENDER) {
 			for (map<string, PointLight>::iterator it = lights.begin();
 											it != lights.end();it++) {
 				int index = std::distance(lights.begin(), it);
 				string name = "lights[" + to_string(index) + "]";
 				PointLight l = it->second;
-				current.setUniformVec3(name+".position", l.position);
-				current.setUniformVec3(name+".ambient", l.ambient);
-				current.setUniformVec3(name+".diffuse", l.diffuse);
-				current.setUniformVec3(name+".specular", l.specular);
-				current.setUniformf(name+".linear", l.linear);
-				current.setUniformf(name+".quadratic", l.quadratic);
+				currentSP.setUniformVec3(name+".position", l.position);
+				currentSP.setUniformVec3(name+".ambient", l.ambient);
+				currentSP.setUniformVec3(name+".diffuse", l.diffuse);
+				currentSP.setUniformVec3(name+".specular", l.specular);
+				currentSP.setUniformf(name+".linear", l.linear);
+				currentSP.setUniformf(name+".quadratic", l.quadratic);
 			}
 
-			current.setUniformVec3("dirlight.direction", dirlight.direction);
-			current.setUniformVec3("dirlight.ambient", dirlight.ambient);
-			current.setUniformVec3("dirlight.diffuse", dirlight.diffuse);
-			current.setUniformVec3("dirlight.specular", dirlight.specular);
+			currentSP.setUniformVec3("dirlight.direction", dirlight.direction);
+			currentSP.setUniformVec3("dirlight.ambient", dirlight.ambient);
+			currentSP.setUniformVec3("dirlight.diffuse", dirlight.diffuse);
+			currentSP.setUniformVec3("dirlight.specular", dirlight.specular);
 		}
 	}
 	void Renderer::useTexture(GLuint texture) {
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture);
-		current.setUniformi("material.diffuse", 0);
+		currentSP.setUniformi("material.diffuse", 0);
 	}
-	void Renderer::useMaterial(Material mat) {
-		current.setUniformVec3("material.ambient", mat.ambient);
-		current.setUniformVec3("material.specular", mat.specular);
-		current.setUniformf("material.shininess", mat.shininess);
-	}
-	void Renderer::renderMesh(GLuint method,Mesh mesh, mat4 M) {
 
-		current.setUniformMat4("model", M);
+	void Renderer::useNormalMap(GLuint texture) {
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		currentSP.setUniformi("material.normal", 1);
+
+	}
+
+	void Renderer::useMaterial(Material mat) {
+		currentSP.setUniformVec3("material.ambient", mat.ambient);
+		currentSP.setUniformVec3("material.specular", mat.specular);
+		currentSP.setUniformf("material.shininess", mat.shininess);
+	}
+
+	void Renderer::renderMesh(GLuint method, Mesh mesh, mat4 M) {
+
+		currentSP.setUniformMat4("model", M);
 
 		auto buffers = mesh.getbuffers();
 		glEnableVertexAttribArray(0);

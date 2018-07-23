@@ -870,6 +870,9 @@
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vert" />
     <None Include="shaders\geomtest.geom" />
+    <None Include="shaders\NML.vert" />
+    <None Include="shaders\NML.frag" />
+    <None Include="shaders\NML.geom" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ideas.txt" />
@@ -879,6 +882,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="textures\uvmap.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\concrete01_spec.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\concrete01_norm.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\concrete01_diff.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\blank.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

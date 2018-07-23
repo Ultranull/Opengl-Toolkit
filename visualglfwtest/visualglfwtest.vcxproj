@@ -441,6 +441,9 @@
     <None Include="shaders\geomtest.geom" />
     <None Include="shaders\modelL.frag" />
     <None Include="shaders\modelL.vert" />
+    <None Include="shaders\NML.frag" />
+    <None Include="shaders\NML.geom" />
+    <None Include="shaders\NML.vert" />
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vert" />
   </ItemGroup>
@@ -448,6 +451,10 @@
     <Text Include="ideas.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="textures\blank.png" />
+    <Image Include="textures\concrete01_diff.png" />
+    <Image Include="textures\concrete01_norm.png" />
+    <Image Include="textures\concrete01_spec.png" />
     <Image Include="textures\uvmap.png" />
     <Image Include="textures\uvtemplate.bmp" />
   </ItemGroup>

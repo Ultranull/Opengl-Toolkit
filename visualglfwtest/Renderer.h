@@ -42,16 +42,22 @@ class Renderer {
 	static std::map<std::string, PointLight> lights;
 	static DirLight dirlight;
 
-	static ShaderProgram current;
+	static ShaderProgram currentSP;
+	static Camera currentC;
 
 public:
+	static enum Option {
+		PLAIN_RENDER,
+		LIGHTING_RENDER
+	};
 	static void addLight(std::string name,PointLight light);
 	static void editLight(std::string name,PointLight light);
 	static void editDirLight(DirLight light);
 
 	static void setCamera(Camera cam);
-	static void useShader(ShaderProgram program,bool light);
+	static void useShader(ShaderProgram program,Option op=PLAIN_RENDER);
 	static void useTexture(GLuint texture);
+	static void useNormalMap(GLuint texture);
 	static void useMaterial(Material mat);
 	static void renderMesh(GLuint method,Mesh mesh,glm::mat4 M);
 

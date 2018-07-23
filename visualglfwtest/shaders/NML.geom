@@ -9,6 +9,7 @@ in VS_OUT{
 }gs_in[];
 
 uniform mat4 model;
+uniform mat4 view;
 
 out vec3 FragPos;  
 out vec3 Normal;  
@@ -16,10 +17,10 @@ out vec2 TexCoords;
 
 out vec3 tangent;
 
-void calcTan();
+void calcTBN();
 
 void main() { 
-	calcTan();
+	calcTBN();
 
     gl_Position = gl_in[0].gl_Position;
 	FragPos     = gs_in[0].FragPos;
@@ -39,7 +40,7 @@ void main() {
     EndPrimitive();
 }
 
-void calcTan(){
+void calcTBN(){
 
 	vec4 pos1=gl_in[0].gl_Position;
 	vec4 pos2=gl_in[1].gl_Position;

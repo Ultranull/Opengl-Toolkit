@@ -45,17 +45,17 @@ uniform Dir dirlight;
 
 vec3 calcLight(Point light,vec3 normal,mat3 TBN);
 vec3 calcDirLight(Dir light,vec3 normal,mat3 TBN);
-mat3 calcTBN(){
+mat3 calcTBN(vec3 normal){
 	mat3 normalMatrix=transpose(inverse(mat3(model)));
 	vec3 T = normalize(normalMatrix * tangent);
-	vec3 N = normalize(normalMatrix * Normal);
+	vec3 N = normalize(normalMatrix * normal);
 	T = normalize(T - dot(T,N) * N);
 	vec3 B = cross(N,T);
 	return transpose(mat3(T,B,N));
 }
 void main(){
-	mat3 TBN=calcTBN();
-	vec3 normal=(texture(material.normal,TexCoords).rgb*2.)-1.;
+	vec3 normal=normalize((texture(material.normal,TexCoords).rgb*2.)-1.);
+	mat3 TBN=calcTBN(Normal);
 	vec3 result=calcDirLight(dirlight,normal,TBN);
 	for(int i=0;i<numLights;i++)
 		result+=calcLight(lights[i],normal,TBN);
@@ -83,11 +83,12 @@ vec3 calcLight(Point light,vec3 normal,mat3 TBN){
 }
 
 vec3 calcDirLight(Dir light,vec3 normal,mat3 TBN){
-	vec3 lightDir=normalize(TBN*-light.direction);
+	vec3 lightDir=normalize(TBN*(-light.direction));
+	
+    vec3 norm = normalize(normal);
+	float diff=max(dot(norm,lightDir),0.);
 
-	float diff=max(dot(Normal,lightDir),0.);
-
-	vec3 reflectDir= reflect(-lightDir,normal);
+	vec3 reflectDir= reflect(-lightDir,norm);
     vec3 viewDir = normalize(TBN*viewPos - TBN*FragPos);
 	float spec=pow(max(dot(reflectDir,viewDir),0.),material.shininess);
 

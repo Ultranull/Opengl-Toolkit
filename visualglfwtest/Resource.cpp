@@ -31,12 +31,17 @@ namespace Resource {
 	}
 
 	ShaderProgram addShader(string name, string vertfile, string fragfile) {
-		ShaderProgram prog(vertfile.c_str(), fragfile.c_str());
+		ShaderProgram prog(vertfile, fragfile);
 		printf("setting shader %s\n",name.c_str());
 		shaders.insert(Shader(name, prog));
 		return prog;
 	}
-
+	ShaderProgram addShader(string name, string vertfile, string fragfile,string geomfile) {
+		ShaderProgram prog(vertfile, fragfile,geomfile);
+		printf("setting shader %s\n", name.c_str());
+		shaders.insert(Shader(name, prog));
+		return prog;
+	}
 	ShaderProgram getShader(string name) {
 		return shaders[name];
 	}

@@ -1,9 +1,9 @@
 
 todo:
 !!-clean main a little
+-make gameobject class as a multi mesh structure
 -organize inputs so that they are reconfigureable.
 -push more input options through input namespace
--two mesh objects can share ids (kinda obvious idea but doesnt hurt to write it down)
 
 
 material.h:

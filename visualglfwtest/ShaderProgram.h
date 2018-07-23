@@ -12,6 +12,7 @@ class ShaderProgram {
 
 public:
 	ShaderProgram(std::string vert,std::string frag);
+	ShaderProgram(std::string vert,std::string frag,std::string geom);
 	ShaderProgram(){}
 	~ShaderProgram();
 

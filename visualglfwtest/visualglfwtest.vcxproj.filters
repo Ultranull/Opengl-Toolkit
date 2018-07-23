@@ -869,6 +869,7 @@
     <None Include="shaders\modelL.vert" />
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vert" />
+    <None Include="shaders\geomtest.geom" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ideas.txt" />

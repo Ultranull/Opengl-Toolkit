@@ -24,6 +24,7 @@ namespace Resource {
 	GLuint getTexture(std::string name);
 
 	ShaderProgram addShader(std::string name, std::string vertfile,std::string fragfile);
+	ShaderProgram addShader(std::string name, std::string vertfile, std::string fragfile, std::string geomfile);
 	ShaderProgram getShader(std::string name);
 
 	Mesh addMesh(std::string name, std::string file);

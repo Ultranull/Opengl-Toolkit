@@ -873,6 +873,7 @@
     <None Include="shaders\NML.vert" />
     <None Include="shaders\NML.frag" />
     <None Include="shaders\NML.geom" />
+    <None Include="shaders\NMLS.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ideas.txt" />
@@ -894,6 +895,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="textures\blank.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\stonetiles_003_diff.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\stonetiles_003_disp.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\stonetiles_003_norm.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -63,8 +63,13 @@ using namespace glm;
 	void Renderer::useNormalMap(GLuint texture) {
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, texture);
-		currentSP.setUniformi("material.normal", 1);
+		currentSP.setUniformi("material.normalMap", 1);
+	}
 
+	void Renderer::useSpecularMap(GLuint texture) {
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		currentSP.setUniformi("material.specularMap", 2);
 	}
 
 	void Renderer::useMaterial(Material mat) {

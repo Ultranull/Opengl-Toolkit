@@ -444,6 +444,7 @@
     <None Include="shaders\NML.frag" />
     <None Include="shaders\NML.geom" />
     <None Include="shaders\NML.vert" />
+    <None Include="shaders\NMLS.frag" />
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vert" />
   </ItemGroup>
@@ -455,6 +456,9 @@
     <Image Include="textures\concrete01_diff.png" />
     <Image Include="textures\concrete01_norm.png" />
     <Image Include="textures\concrete01_spec.png" />
+    <Image Include="textures\stonetiles_003_diff.png" />
+    <Image Include="textures\stonetiles_003_disp.png" />
+    <Image Include="textures\stonetiles_003_norm.png" />
     <Image Include="textures\uvmap.png" />
     <Image Include="textures\uvtemplate.bmp" />
   </ItemGroup>

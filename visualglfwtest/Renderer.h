@@ -58,6 +58,7 @@ public:
 	static void useShader(ShaderProgram program,Option op=PLAIN_RENDER);
 	static void useTexture(GLuint texture);
 	static void useNormalMap(GLuint texture);
+	static void useSpecularMap(GLuint texture);
 	static void useMaterial(Material mat);
 	static void renderMesh(GLuint method,Mesh mesh,glm::mat4 M);
 

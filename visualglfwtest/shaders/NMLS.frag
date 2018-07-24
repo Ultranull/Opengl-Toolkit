@@ -5,6 +5,7 @@ struct Material {
     vec3 ambient;
     sampler2D diffuse;
 	sampler2D normalMap;
+	sampler2D specularMap;
     vec3 specular;    
     float shininess;
 }; 
@@ -56,7 +57,7 @@ mat3 calcTBN(vec3 normal){
 	vec3 N = normalize(normalMatrix * normal);
 	vec3 B = normalize(cross(N, T));
 	T = normalize(T - dot(T,N) * N);
-	if (dot(cross(N, T), B) < 0.0)T *= -1.0;
+	if (dot(cross(N, T), bitangent) < 0.0)T *= -1.0;
 	return transpose(mat3(T,B,N));
 }
 void main(){
@@ -83,7 +84,7 @@ vec3 calcLight(Point light,vec3 normal,mat3 TBN){
     vec3 viewDir = normalize(TBN*viewPos - TBN*FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);  
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-    vec3 specular = light.specular * (spec * material.specular);  
+    vec3 specular = light.specular * (spec * texture(material.specularMap,TexCoords).rgb);  
         
     return (ambient + diffuse + specular)*attun;
 }
@@ -100,7 +101,7 @@ vec3 calcDirLight(Dir light,vec3 normal,mat3 TBN){
 
 	vec3 ambient =light.ambient *material.ambient;
 	vec3 diffuse =light.diffuse *diff*texture(material.diffuse,TexCoords).rgb;
-	vec3 specular=light.specular*spec*material.specular;
+	vec3 specular=light.specular*spec*texture(material.specularMap,TexCoords).rgb;
 
 	return ambient+diffuse+specular;
 }

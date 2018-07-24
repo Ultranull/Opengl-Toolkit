@@ -16,6 +16,7 @@ out vec3 Normal;
 out vec2 TexCoords;
 
 out vec3 tangent;
+out vec3 bitangent;
 
 void calcTBN();
 
@@ -60,5 +61,11 @@ void calcTBN(){
 		 f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y),
 		 f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z)
 	));
+	bitangent=normalize(vec3(
+		f * (-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x),
+		f * (-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y),
+		f * (-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z)
+	));
+
 
 }

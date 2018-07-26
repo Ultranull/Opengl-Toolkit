@@ -55,9 +55,8 @@ mat3 calcTBN(vec3 normal){
 	mat3 normalMatrix=transpose(inverse(mat3(model)));
 	vec3 T = normalize(normalMatrix * tangent);
 	vec3 N = normalize(normalMatrix * normal);
-	vec3 B = normalize(cross(N, T));
+	vec3 B = normalize(normalMatrix * bitangent);
 	T = normalize(T - dot(T,N) * N);
-	if (dot(cross(N, T), bitangent) < 0.0)T *= -1.0;
 	return transpose(mat3(T,B,N));
 }
 void main(){

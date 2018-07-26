@@ -57,15 +57,10 @@ void calcTBN(){
 	
 	float f = 1.0 / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
 	tangent=normalize(vec3(
-		 f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x),
-		 f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y),
-		 f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z)
+		 f * (deltaUV2.y * edge1 - deltaUV1.y * edge2)
 	));
 	bitangent=normalize(vec3(
-		f * (-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x),
-		f * (-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y),
-		f * (-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z)
+		f * (-deltaUV2.x * edge1 + deltaUV1.x * edge2)
 	));
-
 
 }

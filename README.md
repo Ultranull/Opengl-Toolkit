@@ -21,7 +21,7 @@ This is compiled for windows and should run on most systems with opengl 3+.
 
 # preview
 
-flat:
+meshs:
 ![mesh and a color only](color.png)
 
 with texture:

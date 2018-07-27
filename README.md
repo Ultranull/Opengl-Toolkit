@@ -1,7 +1,5 @@
-# visualglfwtest
-messing with opengl 
-
-this is a simple spinning cube
+# Spinning Cube
+as the name says, a simple spinning cube
 
 use up and down to change the fps
 

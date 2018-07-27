@@ -865,15 +865,9 @@
     <None Include="include\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="shaders\modelL.frag" />
-    <None Include="shaders\modelL.vert" />
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vert" />
     <None Include="shaders\geomtest.geom" />
-    <None Include="shaders\NML.vert" />
-    <None Include="shaders\NML.frag" />
-    <None Include="shaders\NML.geom" />
-    <None Include="shaders\NMLS.frag" />
     <None Include="shaders\calcTBN.geom" />
     <None Include="shaders\TLN.frag" />
     <None Include="shaders\TLN.vert" />

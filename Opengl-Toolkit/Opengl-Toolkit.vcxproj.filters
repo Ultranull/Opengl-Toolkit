@@ -879,12 +879,6 @@
     <Text Include="ideas.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="textures\uvtemplate.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="textures\uvmap.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="textures\concrete01_spec.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -906,10 +900,28 @@
     <Image Include="textures\stonetiles_003_norm.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="textures\rustytiles02_norm.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\rustytiles02_spec.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\rustytiles02_diff.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\big_specular.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\big_normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\big_diffus.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="models\suzanne.obj" />
     <Object Include="models\sphere.obj" />
     <Object Include="models\plane.obj" />
+    <Object Include="models\big_wood_barrel.obj" />
   </ItemGroup>
 </Project>

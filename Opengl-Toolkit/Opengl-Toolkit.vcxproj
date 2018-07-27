@@ -453,24 +453,28 @@
     <Text Include="ideas.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="textures\big_diffus.png" />
+    <Image Include="textures\big_normal.png" />
+    <Image Include="textures\big_specular.png" />
     <Image Include="textures\blank.png" />
     <Image Include="textures\concrete01_diff.png" />
     <Image Include="textures\concrete01_norm.png" />
     <Image Include="textures\concrete01_spec.png" />
+    <Image Include="textures\rustytiles02_diff.png" />
+    <Image Include="textures\rustytiles02_norm.png" />
+    <Image Include="textures\rustytiles02_spec.png" />
     <Image Include="textures\stonetiles_003_diff.png" />
     <Image Include="textures\stonetiles_003_disp.png" />
     <Image Include="textures\stonetiles_003_norm.png" />
-    <Image Include="textures\uvmap.png" />
-    <Image Include="textures\uvtemplate.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Object Include="models\big_wood_barrel.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Object>
     <Object Include="models\plane.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Object>
     <Object Include="models\sphere.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </Object>
-    <Object Include="models\suzanne.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Object>
   </ItemGroup>

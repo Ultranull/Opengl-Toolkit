@@ -439,6 +439,7 @@
     <None Include="include\glm\gtx\vector_angle.inl" />
     <None Include="include\glm\gtx\vector_query.inl" />
     <None Include="include\glm\gtx\wrap.inl" />
+    <None Include="shaders\calcTBN.geom" />
     <None Include="shaders\geomtest.geom" />
     <None Include="shaders\modelL.frag" />
     <None Include="shaders\modelL.vert" />
@@ -448,6 +449,13 @@
     <None Include="shaders\NMLS.frag" />
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vert" />
+    <None Include="shaders\T.frag" />
+    <None Include="shaders\T.vert" />
+    <None Include="shaders\TLN-simple.frag" />
+    <None Include="shaders\TLN-simple.vert" />
+    <None Include="shaders\TLN.frag" />
+    <None Include="shaders\TLN.vert" />
+    <None Include="shaders\TLNS.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ideas.txt" />

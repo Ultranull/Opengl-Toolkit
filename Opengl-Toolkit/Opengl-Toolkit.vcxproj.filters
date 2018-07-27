@@ -874,6 +874,14 @@
     <None Include="shaders\NML.frag" />
     <None Include="shaders\NML.geom" />
     <None Include="shaders\NMLS.frag" />
+    <None Include="shaders\calcTBN.geom" />
+    <None Include="shaders\TLN.frag" />
+    <None Include="shaders\TLN.vert" />
+    <None Include="shaders\TLNS.frag" />
+    <None Include="shaders\TLN-simple.frag" />
+    <None Include="shaders\TLN-simple.vert" />
+    <None Include="shaders\T.frag" />
+    <None Include="shaders\T.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ideas.txt" />

@@ -5,6 +5,7 @@ layout (triangle_strip, max_vertices = 3) out;
 in VS_OUT{
 	vec2 UV;
 	vec3 FragPos;
+	vec3 RawPos;
 	vec3 Normal;
 }gs_in[];
 
@@ -43,24 +44,24 @@ void main() {
 
 void calcTBN(){
 
-	vec4 pos1=gl_in[0].gl_Position;
-	vec4 pos2=gl_in[1].gl_Position;
-	vec4 pos3=gl_in[2].gl_Position;
+	vec3 pos1=gs_in[0].RawPos;
+	vec3 pos2=gs_in[1].RawPos;
+	vec3 pos3=gs_in[2].RawPos;
 	vec2 uv1 =gs_in[0].UV;
 	vec2 uv2 =gs_in[1].UV;
 	vec2 uv3 =gs_in[2].UV;
 
-	vec4 edge1   =pos2 - pos1;
-	vec4 edge2   =pos3 - pos1;
+	vec3 edge1   =pos2 - pos1;
+	vec3 edge2   =pos3 - pos1;
 	vec2 deltaUV1= uv2 - uv1;
 	vec2 deltaUV2= uv3 - uv1;
 	
 	float f = 1.0 / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
-	tangent=normalize(vec3(
+	tangent=normalize(
 		 f * (deltaUV2.y * edge1 - deltaUV1.y * edge2)
-	));
-	bitangent=normalize(vec3(
+	);
+	bitangent=normalize(
 		f * (-deltaUV2.x * edge1 + deltaUV1.x * edge2)
-	));
+	);
 
 }

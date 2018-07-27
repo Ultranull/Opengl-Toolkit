@@ -8,6 +8,7 @@ layout(location = 2) in vec3 vertnorm;
 out VS_OUT{
 	vec2 UV;
 	vec3 FragPos;
+	vec3 RawPos;
 	vec3 Normal;
 }vs_out;
 
@@ -17,6 +18,7 @@ uniform mat4 projection;
 
 void main(){
 	vs_out.FragPos = vec3(model * vec4(vertpos, 1.0));
+	vs_out.RawPos = vertpos;
     vs_out.Normal = vertnorm;  
 	vs_out.UV = vertUV;
     

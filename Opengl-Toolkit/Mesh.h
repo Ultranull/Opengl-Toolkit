@@ -32,6 +32,7 @@ public:
 	std::vector<int> getIndexes();
 
 	GLuint getVAO();
+	int getSize();
 
 	void cleanup();
 };

@@ -132,6 +132,10 @@ GLuint Mesh::getVAO() {
 	return vertexArrayID;
 }
 
+int Mesh::getSize() {
+	return indexes.size();
+}
+
 void Mesh::cleanup() {
 	glDeleteBuffers(1, &vertexbuffer);
 	glDeleteBuffers(1, &uvbuffer);

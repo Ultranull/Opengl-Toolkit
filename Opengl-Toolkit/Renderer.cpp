@@ -82,13 +82,12 @@ using namespace glm;
 
 		currentSP.setUniformMat4("model", M);
 
-		int size = get<3>(mesh.getbuffers());
 		glBindVertexArray(mesh.getVAO());
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 		glEnableVertexAttribArray(2);
 
-		glDrawArrays(method, 0, size * 3);
+		glDrawArrays(method, 0, mesh.getSize() * 3);
 
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);

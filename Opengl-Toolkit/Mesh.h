@@ -31,6 +31,8 @@ public:
 	std::vector<glm::vec3> getNormals();
 	std::vector<int> getIndexes();
 
+	GLuint getVAO();
+
 	void cleanup();
 };
 

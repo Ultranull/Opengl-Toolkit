@@ -82,20 +82,13 @@ using namespace glm;
 
 		currentSP.setUniformMat4("model", M);
 
-		auto buffers = mesh.getbuffers();
+		int size = get<3>(mesh.getbuffers());
+		glBindVertexArray(mesh.getVAO());
 		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, get<0>(buffers));
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
 		glEnableVertexAttribArray(1);
-		glBindBuffer(GL_ARRAY_BUFFER, get<1>(buffers));
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
 		glEnableVertexAttribArray(2);
-		glBindBuffer(GL_ARRAY_BUFFER, get<2>(buffers));
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-		glDrawArrays(method, 0, get<3>(buffers) * 3);
+		glDrawArrays(method, 0, size * 3);
 
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);

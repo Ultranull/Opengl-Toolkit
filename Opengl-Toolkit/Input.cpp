@@ -11,7 +11,7 @@ namespace Input {
 	}
 
 	void pollinput() {
-		printf("polling");
+		printf("polling");//FIX! actually implement for better input management
 	}
 
 	void addInput(int key,keyfunc func) {

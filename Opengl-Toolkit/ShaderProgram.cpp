@@ -6,7 +6,7 @@
 
 using namespace std;
 
-string readFile(const char *file) {
+string readFile(const char *file) {//FIX! place in a header as a util
 	string content;
 	ifstream stream(file);
 	if (stream.is_open()) {

@@ -88,7 +88,7 @@ namespace Resource {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);  // texture should tile
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glGenerateMipmap(GL_TEXTURE_2D);
-
+		//FIX! this is loading and setting data twice, just use load ogl texture
 		data = SOIL_load_image(filename, &width, &height, 0, SOIL_LOAD_RGBA);
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -125,6 +125,7 @@ namespace Resource {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, 0x812F);  // texture should tile
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, 0x812F);
 
+		//FIX! this is loading and setting data twice, further research needed for for subimages
 		data = SOIL_load_image(filename, &width, &height, 0, SOIL_LOAD_RGBA);
 
 		glPixelStorei(GL_UNPACK_ROW_LENGTH, width);

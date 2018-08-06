@@ -6,7 +6,7 @@
 
 using namespace glm;
 
-const GLuint FORWARD = GLFW_KEY_W;
+const GLuint FORWARD = GLFW_KEY_W;//FIX! move to input class
 const GLuint BACKWARD = GLFW_KEY_S;
 const GLuint STRAFERIGHT = GLFW_KEY_D;
 const GLuint STRAFELEFT = GLFW_KEY_A;
@@ -23,7 +23,7 @@ Camera::Camera(vec3 pos, vec3 dir, vec3 u) :position(pos), direction(dir), up(u)
 
 void Camera::apply(GLFWwindow *window, float delta) {
 	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
+	glfwGetFramebufferSize(window, &width, &height);//FIX! all input should be called from input class
 	glfwGetCursorPos(window, &xpos, &ypos);
 	glfwSetCursorPos(window, width / 2, height / 2);
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -41,7 +41,7 @@ void Camera::apply(GLFWwindow *window, float delta) {
 		cos(hangle - pi / 2.f));
 	up = cross(right, direction);
 
-	if (glfwGetKey(window, FORWARD) == GLFW_PRESS) {
+	if (glfwGetKey(window, FORWARD) == GLFW_PRESS) {//FIX! all input should be called from input class
 		position += direction * delta * speed;
 	}
 	if (glfwGetKey(window, BACKWARD) == GLFW_PRESS) {
@@ -60,13 +60,13 @@ void Camera::apply(GLFWwindow *window, float delta) {
 }
 void Camera::orbit(GLFWwindow *window, float delta,vec3 target) {
 	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
+	glfwGetFramebufferSize(window, &width, &height);//FIX! all input should be called from input class
 	glfwGetCursorPos(window, &xpos, &ypos);
 	glfwSetCursorPos(window, width / 2, height / 2);
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 
-	if (glfwGetKey(window, FORWARD) == GLFW_PRESS) {
+	if (glfwGetKey(window, FORWARD) == GLFW_PRESS) {//FIX! all input should be called from input class
 		orbitDist -=  delta * speed;
 	}
 	if (glfwGetKey(window, BACKWARD) == GLFW_PRESS) {

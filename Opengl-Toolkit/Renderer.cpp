@@ -83,8 +83,8 @@ using namespace glm;
 		currentSP.setUniformMat4("model", M);
 
 		glBindVertexArray(mesh.getVAO());
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
+		glEnableVertexAttribArray(0);//FIX! unnecissary to be done every frame
+		glEnableVertexAttribArray(1);//|-just enable once dont enable and disable every frame
 		glEnableVertexAttribArray(2);
 
 		glDrawArrays(method, 0, mesh.getSize() * 3);

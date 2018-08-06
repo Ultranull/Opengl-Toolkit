@@ -72,7 +72,7 @@ Mesh::Mesh(const char *filename) : vertexes(),indexes() {
 			for (int i = 0;i < 2;i++) iss >> uv[i];
 			uv_.push_back(vec2(uv.x,1-uv.y));
 		}
-		else if (!line.compare(0, 2, "f ")) {
+		else if (!line.compare(0, 2, "f ")) {//FIX! calculate indices correctly
 			vector<ivec3> f;
 			int vert, uv, norm;
 			iss >> trash;
